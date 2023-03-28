@@ -46,17 +46,18 @@ import TextModule;
 public class UserInterface {
 
   private JFrame mainFrame;
-  private DrawingPanel drawingPanel;
+  private MainGraphicsModule mainGraphicsModule;
   private DocumentModule documentModule;
-  private EditModule editModule;
+  private ProjectEditModule projectEditModule;
   private LayersModule layersModule;
   private TextModule textModule;
   private ImageEditModule imageEditModule;
 
-  public Photoshop() {
-    drawingPanel = new DrawingPanel();
-    documentModule = new DocumentModule();
-    editModule = new EditModule();
+  public UserInterface() {
+    mainFrame = new JFrame("Photoshop Clone");
+    mainGraphicsModule = new MainGraphicsModule();
+    documentModule = new DocumentModule(mainFrame);
+    projectEditModule = new ProjectEditModule();
     layersModule = new LayersModule();
     textModule = new TextModule();
     imageEditModule = new ImageEditModule();
