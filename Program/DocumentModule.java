@@ -13,7 +13,15 @@ public class DocumentModule {
     }
     
     public void openDocument(String filename) {
-        // Реализовать открытие документа
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
+        fileChooser.setFileFilter(filter);
+        int returnValue = fileChooser.showOpenDialog(frame);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            data = Files.readAllLines(path);
+        }
     }
     
     public void createDocument(String filename) {
