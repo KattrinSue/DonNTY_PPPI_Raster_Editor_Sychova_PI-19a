@@ -85,7 +85,62 @@ public class UserInterface {
   }
 
   private JPanel createToolsPanel() {
-    // реализовать панель инструментов
+    JPanel toolsPanel = new JPanel();
+    toolsPanel.setLayout(new BoxLayout(toolsPanel, BoxLayout.Y_AXIS));
+    toolsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+    JButton newButton = new JButton("New");
+    newButton.addActionListener(e -> documentModule.createDocument());
+
+    JButton openButton = new JButton("Open");
+    openButton.addActionListener(e -> documentModule.openDocument(selectedFile.getAbsolutePath()));
+
+    JButton saveButton = new JButton("Save");
+    saveButton.addActionListener(e -> documentModule.saveDocument(selectedFile.getAbsolutePath()));
+
+    JToggleButton selectButton = new JToggleButton(new ImageIcon(getClass().getResource("select.png")));
+    selectButton.addActionListener(e -> mainGraphicsModule.setShapeSelection());
+
+    JToggleButton drawButton = new JToggleButton(new ImageIcon(getClass().getResource("pencil.png")));
+    drawButton.addActionListener(e -> mainGraphicsModule.setPencilDrawing());
+
+    JToggleButton eraseButton = new JToggleButton(new ImageIcon(getClass().getResource("eraser.png")));
+    eraseButton.addActionListener(e -> mainGraphicsModule.setErasing());
+
+    JToggleButton fillButton = new JToggleButton(new ImageIcon(getClass().getResource("fill.png")));
+    fillButton.addActionListener(e -> mainGraphicsModule.setFillDrawing());
+
+    JToggleButton shapeButton = new JToggleButton(new ImageIcon(getClass().getResource("shape.png")));
+    // реализовать рисование тремя фигурами на выбор: прямоугольник, эллипс и треугольник
+
+    JToggleButton textButton = new JToggleButton(new ImageIcon(getClass().getResource("text.png")));
+    textButton.addActionListener(e -> {
+      String text = JOptionPane.showInputDialog(mainFrame, "Enter Text to Draw");
+      if (text != null) {
+        mainGraphicsModule.setTextDrawing(text);
+      }
+    });
+
+    JToggleButton selectColorButton = new JToggleButton(new ImageIcon(getClass().getResource("color-picker.png")));
+    selectColorButton.addActionListener(e -> {
+      Color color = JColorChooser.showDialog(null, "Choose Color", Color.BLACK);
+      mainGraphicsModule.setDrawingColor(color);
+    });
+
+    toolsPanel.add(newButton);
+    toolsPanel.add(openButton);
+    toolsPanel.add(saveButton);
+    toolsPanel.add(Box.createVerticalStrut(10));
+    toolsPanel.add(selectButton);
+    toolsPanel.add(drawButton);
+    toolsPanel.add(eraseButton);
+    toolsPanel.add(fillButton);
+    toolsPanel.add(shapeButton);
+    toolsPanel.add(textButton);
+    toolsPanel.add(Box.createVerticalStrut(10));
+    toolsPanel.add(selectColorButton);
+
+    return toolsPanel;
   }
 
   private void createMenuBar() {
