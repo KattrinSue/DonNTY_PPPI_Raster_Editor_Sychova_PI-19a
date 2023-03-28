@@ -64,7 +64,24 @@ public class UserInterface {
   }
 
   private void createGUI() {
-    // реализовать оконную форму
+    mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    mainFrame.setLayout(new BorderLayout());
+
+    createMenuBar();
+
+    JPanel contentPanel = new JPanel(new BorderLayout());
+
+    JPanel toolsPanel = createToolsPanel();
+    contentPanel.add(toolsPanel, BorderLayout.WEST);
+
+    mainGraphicsModule = new MainGraphicsModule();
+    contentPanel.add(mainGraphicsModule, BorderLayout.CENTER);
+
+    mainFrame.add(contentPanel, BorderLayout.CENTER);
+
+    mainFrame.setPreferredSize(new Dimension(1000, 700));
+    mainFrame.pack();
+    mainFrame.setVisible(true);
   }
 
   private JPanel createToolsPanel() {
