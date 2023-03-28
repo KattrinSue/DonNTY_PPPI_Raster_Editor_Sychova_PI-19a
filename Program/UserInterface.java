@@ -89,6 +89,74 @@ public class UserInterface {
   }
 
   private void createMenuBar() {
-    // реализовать панель меню
+    JMenuBar menuBar = new JMenuBar();
+
+    JMenu fileMenu = new JMenu("File");
+
+    JMenuItem newMenuItem = new JMenuItem("New");
+    newMenuItem.addActionListener(e -> documentModule.createDocument());
+
+    JMenuItem openMenuItem = new JMenuItem("Open");
+    openMenuItem.addActionListener(e -> {
+      JFileChooser fileChooser = new JFileChooser();
+      FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
+      fileChooser.setFileFilter(filter);
+      int returnValue = fileChooser.showOpenDialog(mainFrame);
+      if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+        documentModule.openDocument(selectedFile.getAbsolutePath());
+      }
+    });
+
+    JMenuItem saveMenuItem = new JMenuItem("Save");
+    saveMenuItem.addActionListener(e -> {
+      JFileChooser fileChooser = new JFileChooser();
+      FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
+      fileChooser.setFileFilter(filter);
+      int returnValue = fileChooser.showSaveDialog(mainFrame);
+      if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+        documentModule.saveDocument(selectedFile.getAbsolutePath());
+      }
+    });
+
+    fileMenu.add(newMenuItem);
+    fileMenu.add(openMenuItem);
+    fileMenu.add(saveMenuItem);
+
+    JMenu editMenu = new JMenu("Edit");
+
+    JMenuItem undoMenuItem = new JMenuItem("Undo");
+    undoMenuItem.addActionListener(e -> projectEditModule.undo());
+
+    JMenuItem redoMenuItem = new JMenuItem("Redo");
+    redoMenuItem.addActionListener(e -> projectEditModule.redo());
+
+    editMenu.add(undoMenuItem);
+    editMenu.add(redoMenuItem);
+
+    JMenu layerMenu = new JMenu("Layers");
+
+    JMenuItem newLayerMenuItem = new JMenuItem("New Layer");
+    newLayerMenuItem.addActionListener(e -> layersModule.createLayer());
+
+    JMenuItem duplicateLayerMenuItem = new JMenuItem("Duplicate Layer");
+    duplicateLayerMenuItem.addActionListener(e -> layersModule.duplicateLayer());
+
+    JMenuItem deleteLayerMenuItem = new JMenuItem("Delete Layer");
+    deleteLayerMenuItem.addActionListener(e -> layersModule.deleteLayer());
+
+    layerMenu.add(newLayerMenuItem);
+    layerMenu.add(duplicateLayerMenuItem);
+    layerMenu.add(deleteLayerMenuItem);
+
+    JMenu textMenu = new JMenu("Text");
+
+    JMenuItem openSymbolsPanelMenuItem = new JMenuItem("Open Symbols Panel");
+    openSymbolsPanelMenuItem.addActionListener(e -> textModule.openSymbolsPanel());
+
+    textMenu.add(openSymbolsPanelMenuItem);
+
+    JMenu imageMenu = new JMenu("Image");
   }
 }
