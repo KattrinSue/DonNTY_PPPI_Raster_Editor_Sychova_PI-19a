@@ -97,28 +97,10 @@ public class UserInterface {
     newMenuItem.addActionListener(e -> documentModule.createDocument());
 
     JMenuItem openMenuItem = new JMenuItem("Open");
-    openMenuItem.addActionListener(e -> {
-      JFileChooser fileChooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
-      fileChooser.setFileFilter(filter);
-      int returnValue = fileChooser.showOpenDialog(mainFrame);
-      if (returnValue == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = fileChooser.getSelectedFile();
-        documentModule.openDocument(selectedFile.getAbsolutePath());
-      }
-    });
+    openMenuItem.addActionListener(e -> documentModule.openDocument(selectedFile.getAbsolutePath()));
 
     JMenuItem saveMenuItem = new JMenuItem("Save");
-    saveMenuItem.addActionListener(e -> {
-      JFileChooser fileChooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
-      fileChooser.setFileFilter(filter);
-      int returnValue = fileChooser.showSaveDialog(mainFrame);
-      if (returnValue == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = fileChooser.getSelectedFile();
-        documentModule.saveDocument(selectedFile.getAbsolutePath());
-      }
-    });
+    saveMenuItem.addActionListener(e -> documentModule.saveDocument(selectedFile.getAbsolutePath()));
 
     fileMenu.add(newMenuItem);
     fileMenu.add(openMenuItem);
