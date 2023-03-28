@@ -111,7 +111,17 @@ public class UserInterface {
     fillButton.addActionListener(e -> mainGraphicsModule.setFillDrawing());
 
     JToggleButton shapeButton = new JToggleButton(new ImageIcon(getClass().getResource("shape.png")));
-    // реализовать рисование тремя фигурами на выбор: прямоугольник, эллипс и треугольник
+    shapeButton.addActionListener(e -> {
+      Object[] options = {"Rectangle", "Ellipse", "Triangle"};
+      int value = JOptionPane.showOptionDialog(mainFrame, "Select Shape to Draw", "Shape Selection", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+      if (value == 0) {
+        mainGraphicsModule.setShapeDrawing(MainGraphicsModule.ShapeType.RECTANGLE);
+      } else if (value == 1) {
+        mainGraphicsModule.setShapeDrawing(MainGraphicsModule.ShapeType.ELLIPSE);
+      } else if (value == 2) {
+        mainGraphicsModule.setShapeDrawing(MainGraphicsModule.ShapeType.TRIANGLE);
+      }
+    });
 
     JToggleButton textButton = new JToggleButton(new ImageIcon(getClass().getResource("text.png")));
     textButton.addActionListener(e -> {
