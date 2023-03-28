@@ -25,7 +25,15 @@ public class DocumentModule {
     }
     
     public void createDocument(String filename) {
-        // Реализовать создание документа
+       JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
+        fileChooser.setFileFilter(filter);
+        int returnValue = fileChooser.showSaveDialog(frame);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            Files.createFile(path);
+        }
     }
     
     public void saveDocument(String filename) {
