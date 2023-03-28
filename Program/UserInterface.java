@@ -46,8 +46,20 @@ import TextModule;
 public class UserInterface {
 
   private JFrame mainFrame;
+  private DrawingPanel drawingPanel;
+  private DocumentModule documentModule;
+  private EditModule editModule;
+  private LayersModule layersModule;
+  private TextModule textModule;
+  private ImageEditModule imageEditModule;
 
   public Photoshop() {
+    drawingPanel = new DrawingPanel();
+    documentModule = new DocumentModule();
+    editModule = new EditModule();
+    layersModule = new LayersModule();
+    textModule = new TextModule();
+    imageEditModule = new ImageEditModule();
     createGUI();
   }
 
