@@ -25,7 +25,7 @@ public class DocumentModule {
     }
     
     public void createDocument(String filename) {
-       JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
         fileChooser.setFileFilter(filter);
         int returnValue = fileChooser.showSaveDialog(frame);
@@ -37,6 +37,16 @@ public class DocumentModule {
     }
     
     public void saveDocument(String filename) {
-        // Реализовать сохранение документа
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
+        fileChooser.setFileFilter(filter);
+        int returnValue = fileChooser.showSaveDialog(frame);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            Files.createFile(path);
+            for (String str : data)
+                Files.writeString(path, str);
+        }
     }
 }
