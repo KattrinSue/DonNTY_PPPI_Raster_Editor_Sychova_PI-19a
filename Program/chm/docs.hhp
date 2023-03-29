@@ -1,0 +1,25 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=docs.chm
+Contents file=Table of Contents.hhc
+Default topic=author.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x419 Русский (Россия)
+
+
+[FILES]
+author.htm
+description.htm
+intro.htm
+module1.htm
+module2.htm
+module3.htm
+modules.htm
+support.htm
+module6.htm
+module4.htm
+module5.htm
+
+[INFOTYPES]
+
