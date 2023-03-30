@@ -1,5 +1,31 @@
-// Е) основной модуль графики
+import java.util.List;
+
+/**
+ * Основной модуль графики
+ * @author KattrinSue
+ * @version 1.0.1
+ */
 public class MainGraphicsModule {
+
+    public void setShapeDrawing(ShapeType shapeType) {
+    }
+
+    public enum ShapeType {
+        RECTANGLE,
+        ELLIPSE,
+        TRIANGLE
+    }
+    public class Point2D {
+    }
+    public class Point {
+    }
+    public class Rectangle {
+    }
+    public class Path2D {
+    }
+    public class Shape {
+    }
+
     public void moveObjects(List<Shape> shapes, Point2D startPoint, Point2D endPoint) {
         // Реализовать инструмент перемещения
     }
@@ -32,16 +58,18 @@ public class MainGraphicsModule {
         // Реализовать инструмент точечной восстанавливающей кисти
     }
 
-    public void drawStroke(List<Point> points) {
+    public void drawStroke() {
         // Реализовать инструмент кисти для рисования штрихов заказной кистью
+        List<Point> points;
     }
 
     public void stamp(List<Point> points) {
         // Реализовать инструмент штамп для рисования пикселями из другой области изображения
     }
 
-    public void erase(List<Point> points) {
+    public void erase() {
         // Реализовать инструмент ластика для изменения цвета пикселей на фоновый или прозрачный
+        List<Point> points;
     }
 
     public void createGradient(Rectangle gradientRect) {
@@ -52,7 +80,7 @@ public class MainGraphicsModule {
         // Реализовать инструмент пера для создания и изменения контуров или фигур
     }
 
-    public void horizontalText(Path2D path) {
+    public void horizontalText(String text) {
         // Реализовать инструмент горизонтального текста
     }
 
@@ -67,7 +95,14 @@ public class MainGraphicsModule {
     public void extractContour(Rectangle rect) {
         // Реализовать инструмент "Выделение контура"
     }
-    
+
+    /**
+     * Инструмент "Фигура" рисует одной из трех видов фигур:
+     *  - прямоугольник
+     *  - эллипс
+     *  - треугольник
+     * @param shape принимает одно из трех состояний ShapeType: RECTANGLE, ELLIPSE, TRIANGLE
+     */
     public void drawShape(Shape shape) {
         // Реализовать инструмент "Фигура" для рисования заданной фигуры
     }
@@ -78,5 +113,8 @@ public class MainGraphicsModule {
     
     public void scaleImage(double scaleFactor) {
         // Реализовать инструмент "Масштаб" для увеличения или уменьшения масштаба изображения.
+    }
+
+    public void setFillDrawing() {
     }
 }

@@ -1,8 +1,17 @@
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-// А) модуль работы с документами
+/**
+ * Модуль работы с документами
+ * @author KattrinSue
+ * @version 1.0.1
+ */
 public class DocumentModule {
     List<String> data;
     JFrame frame;
@@ -11,7 +20,7 @@ public class DocumentModule {
     public DocumentModule(JFrame frame) {
         this.frame = frame;
     }
-    
+
     public void openDocument(String filename) {
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
@@ -20,11 +29,15 @@ public class DocumentModule {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
-            data = Files.readAllLines(path);
+            try {
+                data = Files.readAllLines(Path.of(path));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     
-    public void createDocument(String filename) {
+    public void createDocument() {
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
         fileChooser.setFileFilter(filter);
@@ -32,7 +45,11 @@ public class DocumentModule {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
-            Files.createFile(path);
+            try {
+                Files.createFile(Path.of(path));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     
@@ -44,9 +61,18 @@ public class DocumentModule {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
-            Files.createFile(path);
-            for (String str : data)
-                Files.writeString(path, str);
+            try {
+                Files.createFile(Path.of(path));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            for (String str : data) {
+                try {
+                    Files.writeString(Path.of(path), str);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }

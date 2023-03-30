@@ -1,4 +1,8 @@
-// Д) модуль текста
+/**
+ * Модуль текста
+ * @author KattrinSue
+ * @version 1.0.1
+ */
 public class TextModule {
     public void openSymbolsPanel() {
         // Реализовать открытие панели символов

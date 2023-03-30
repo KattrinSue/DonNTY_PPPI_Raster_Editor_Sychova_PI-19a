@@ -1,5 +1,12 @@
-// В) модуль редактирования изображения
+/**
+ * Модуль редактирования изображения
+ * @author KattrinSue
+ * @version 1.0.1
+ */
 public class ImageEditModule {
+    public class Rectangle {
+    }
+
     public void setColorMode(String mode) {
         // Реализовать установку режима цветовой модели
     }
